@@ -1,47 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Edit Task</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-  </head>
+<div class="container">
 
-  <body>
-    <div class="container">
-      <h2>Edit Task</h2>
+<h2>Edit Task</h2>
 
-      <form method="POST">
-        <input type="text" name="title" value="{{ task[2] }}" required />
+<form method="POST">
 
-        <textarea name="description">{{ task[3] }}</textarea>
+    <input
+        type="text"
+        name="title"
+        value="{{ task[2] }}"
+        required>
 
-        <select name="priority">
-          <option {% if task[4]="" ="Low" %}selected{% endif %}>Low</option>
+    <textarea name="description">{{ task[3] }}</textarea>
 
-          <option {% if task[4]="" ="Medium" %}selected{% endif %}>
-            Medium
-          </option>
+    <select name="priority">
+        <option value="Low" {% if task[4] == 'Low' %}selected{% endif %}>Low</option>
+        <option value="Medium" {% if task[4] == 'Medium' %}selected{% endif %}>Medium</option>
+        <option value="High" {% if task[4] == 'High' %}selected{% endif %}>High</option>
+    </select>
 
-          <option {% if task[4]="" ="High" %}selected{% endif %}>High</option>
-        </select>
+    <select name="status">
+        <option value="Pending" {% if task[5] == 'Pending' %}selected{% endif %}>Pending</option>
+        <option value="Completed" {% if task[5] == 'Completed' %}selected{% endif %}>Completed</option>
+    </select>
 
-        <select name="status">
-          <option {% if task[5]="" ="Pending" %}selected{% endif %}>
-            Pending
-          </option>
+    <input
+        type="date"
+        name="due_date"
+        value="{{ task[6] }}">
 
-          <option {% if task[5]="" ="Completed" %}selected{% endif %}>
-            Completed
-          </option>
-        </select>
+    <button type="submit">Update Task</button>
 
-        <input type="date" name="due_date" value="{{ task[6] }}" />
+</form>
 
-        <button>Update Task</button>
-      </form>
-    </div>
-  </body>
+</div>
+
+</body>
 </html>
