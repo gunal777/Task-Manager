@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Project Task Manager</h1>
+
+      <h3>Welcome {{ session['name'] }}</h3>
+
+      <div class="stats">
+        <div class="card">
+          <h2>{{ total }}</h2>
+          <p>Total</p>
+        </div>
+
+        <div class="card">
+          <h2>{{ completed }}</h2>
+          <p>Completed</p>
+        </div>
+
+        <div class="card">
+          <h2>{{ pending }}</h2>
+          <p>Pending</p>
+        </div>
+      </div>
+
+      <a class="btn" href="/add">+ Add Task</a>
+
+      <a class="logout" href="/logout">Logout</a>
+
+      <hr />
+
+      {% for task in tasks %}
+
+      <div class="task">
+        <h2>{{ task[2] }}</h2>
+
+        <p>{{ task[3] }}</p>
+
+        <p><b>Priority:</b> {{ task[4] }}</p>
+
+        <p><b>Status:</b> {{ task[5] }}</p>
+
+        <p><b>Due:</b> {{ task[6] }}</p>
+
+        <a href="/edit/{{ task[0] }}">Edit</a>
+
+        <a
+          href="/delete/{{ task[0] }}"
+          onclick="return confirm('Delete this task?');"
+        >
+          Delete
+        </a>
+      </div>
+
+      {% endfor %}
+    </div>
+  </body>
+</html>

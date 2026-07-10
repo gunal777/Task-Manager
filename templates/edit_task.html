@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Edit Task</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Edit Task</h2>
+
+      <form method="POST">
+        <input type="text" name="title" value="{{ task[2] }}" required />
+
+        <textarea name="description">{{ task[3] }}</textarea>
+
+        <select name="priority">
+          <option {% if task[4]="" ="Low" %}selected{% endif %}>Low</option>
+
+          <option {% if task[4]="" ="Medium" %}selected{% endif %}>
+            Medium
+          </option>
+
+          <option {% if task[4]="" ="High" %}selected{% endif %}>High</option>
+        </select>
+
+        <select name="status">
+          <option {% if task[5]="" ="Pending" %}selected{% endif %}>
+            Pending
+          </option>
+
+          <option {% if task[5]="" ="Completed" %}selected{% endif %}>
+            Completed
+          </option>
+        </select>
+
+        <input type="date" name="due_date" value="{{ task[6] }}" />
+
+        <button>Update Task</button>
+      </form>
+    </div>
+  </body>
+</html>
